@@ -1,8 +1,9 @@
 {
   "hosting": {
+    "site": "svelte-kit-cloud-run",
     "rewrites": [
       {
-        "source": "/svelte-kit",
+        "source": "**",
         "run": {
           "serviceId": "svelte-kit",
           "region": "asia-southeast1",

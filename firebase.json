@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "/svelte-kit",
+        "run": {
+          "serviceId": "svelte-kit",
+          "region": "asia-southeast1",
+          "pinTag": true
+        }
+      }
+    ]
+  }
+}

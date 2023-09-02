@@ -1,5 +1,7 @@
  # build stage
-FROM node:18.9-alpine as build
+#FROM node:18.9-alpine as build
+FROM --platform=linux/amd64 node:18.9-alpine as build
+
 
 WORKDIR /app
 # copy everything
@@ -10,7 +12,7 @@ RUN yarn install
 RUN yarn build
 
 # run stage, to separate it from the build stage, to save disk storage
-FROM node:18.9-alpine
+FROM --platform=linux/amd64 node:18.9-alpine
 
 WORKDIR /app
 
@@ -19,6 +21,7 @@ COPY --from=build /app/package*.json ./
 COPY --from=build /app/build ./
 
 # expose the app's port
-EXPOSE 3000
+EXPOSE 8080
+ENV PORT=8080
 # run the server
 CMD ["node", "./index.js"]

@@ -9,7 +9,11 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
 		"docker-build": "docker build -t svelte-kit .",
-		"docker-run": "docker run --rm -p 3000:3000/tcp svelte-kit"
+		"docker-run": "docker run --rm -p 8080:8080/tcp svelte-kit",
+		"docker-tag": "docker tag svelte-kit gcr.io/tldr-blog/svelte-kit",
+		"docker-push": "docker push gcr.io/tldr-blog/svelte-kit",
+		"cloud-run-deploy": "gcloud run deploy svelte-kit --image gcr.io/tldr-blog/svelte-kit --platform managed --region asia-southeast1 --allow-unauthenticated --port 8080",
+		"deploy": "yarn docker-build && yarn docker-tag && yarn docker-push && yarn cloud-run-deploy"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",

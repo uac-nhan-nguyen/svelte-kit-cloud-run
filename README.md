@@ -39,3 +39,15 @@ You can preview the production build with `npm run preview`.
 
 ## Deploy
 https://www.mbaraa.com/blog/deploy-sveltekit-to-google-cloud-run-using-docker
+
+when error on mac m1: https://stackoverflow.com/questions/73398714/docker-fails-when-building-on-m1-macs-exec-usr-local-bin-docker-entrypoint-sh
+https://stackoverflow.com/questions/65612411/forcing-docker-to-use-linux-amd64-platform-by-default-on-macos/69636473#69636473
+
+```shell
+gcloud config set project tldr-blog
+docker tag svelte-kit gcr.io/tldr-blog/svelte-kit
+docker push gcr.io/tldr-blog/svelte-kit
+docker image prune
+
+gcloud run deploy --image gcr.io/tldr-blog/svelte-kit
+```
